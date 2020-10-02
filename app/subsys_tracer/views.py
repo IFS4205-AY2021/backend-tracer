@@ -8,7 +8,7 @@ def home(request):
     return render(request,'home.html', {})
 
 def search_status(request):
-    if request.GET:
+    if request.POST:
         user = User.objects.get(id = request['id'])
         test_result = user.test_result
         return HttpResponse("User find")
@@ -26,7 +26,7 @@ def change_status(request):
     return HttpResponse("Invalid request")
 
 def delete_people(request):
-    if request.GET:
+    if request.POST:
         user = User.objects.get(id = request['id'])
         user.delete()
         return HttpResponse("User deleted")
