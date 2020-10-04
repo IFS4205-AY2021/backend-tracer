@@ -15,6 +15,9 @@ class User(models.Model):
     test_result     = models.CharField(max_length=5, choices=TestResult.choices)
     encryption_keys = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+
 class StayHomeRecord(models.Model):
     name            = models.CharField(max_length=64)
     phone           = models.CharField(max_length=12)
@@ -23,6 +26,9 @@ class StayHomeRecord(models.Model):
     images          = models.CharField(max_length=32) # TOBE updated
     videos          = models.CharField(max_length=32) # TOBE updated
     documents       = models.CharField(max_length=32) # TOBE updated
+    
+    def __str__(self):
+        return self.name
 
 class Admin(models.Model):
     name            = models.CharField(max_length=64)

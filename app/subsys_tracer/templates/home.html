@@ -1,10 +1,75 @@
-<h1>Arisu no Ploy</h1>
+<h1>Tracer</h1>
 
 <body>
-    <form action="/tracer/change-status/" method="post">
+    <p>search status:</p>
+    <form action="/api/tracer/search-status/" method="post">
         {% csrf_token %}
-        <input type="text" name="status">
-        <input type="submit" value="Submit">
+        <input type="text" name="phone">
+        <input type="submit" value="Search">
     </form>
-    <p>{{ rlt }}</p>
+    {% if test_result != 'No such user in the system' %} {% if test_result == "True" %}
+    <p>positive</p>
+    <form action="/api/tracer/change-status/" method="post">
+        {% csrf_token %}
+        <input type="text" name="phone">
+        <input type="text" name="status">
+        <input type="submit" value="Change">
+    </form>
+    {% elif test_result == "False"%}
+    <p>negative</p>
+    <form action="/api/tracer/change-status/" method="post">
+        {% csrf_token %}
+        <input type="text" name="phone">
+        <input type="text" name="status">
+        <input type="submit" value="Change">
+    </form>
+    {% elif test_result == "None" %}
+    <p>unknown</p>
+    <form action="/api/tracer/change-status/" method="post">
+        {% csrf_token %}
+        <input type="text" name="phone">
+        <input type="text" name="status">
+        <input type="submit" value="Change">
+    </form>
+    {% endif %} {% else %}
+    <p>{{ test_result }}</p>
+    {% endif %} {{ msg }}
+</body>
+
+<body>
+    <p>search contact:</p>
+    <form action="/api/tracer/search-contact/" method="post">
+        {% csrf_token %}
+        <input type="text" name="phone">
+        <input type="submit" value="Search">
+    </form>
+    {{ results }} {% for i in phone %} {{ i }}
+    <br> {% endfor %}
+
+    <p>add contact:</p>
+    <form action="/api/tracer/add-contact/" method="post">
+        {% csrf_token %}
+        <input type="text" name="phone1">
+        <input type="text" name="phone2">
+        <input type="submit" value="submit">
+    </form>
+    {{ addmsg }}
+
+    <p>delete contact:</p>
+    <form action="/api/tracer/delete-contact/" method="post">
+        {% csrf_token %}
+        <input type="text" name="phone1">
+        <input type="text" name="phone2">
+        <input type="submit" value="Delete">
+    </form>
+    {{ delmsg}}
+
+    <p>search records:</p>
+    <form action="/api/tracer/search-records/" method="post">
+        {% csrf_token %}
+        <input type="text" name="phone">
+        <input type="submit" value="Search">
+    </form>
+    {% for i in records %} {% if i == "next" %}
+    <br> {% else %} {{ i }} {% endif%} {% endfor %} {{ recmsg }}
 </body>
