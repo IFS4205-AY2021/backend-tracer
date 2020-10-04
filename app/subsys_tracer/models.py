@@ -42,3 +42,14 @@ class Tracer(models.Model):
     name            = models.CharField(max_length=64)
     phone           = models.CharField(max_length=12)
     encryption_keys = models.TextField(blank=True, null=True)
+
+class Contact(models.Model):
+    phone1           = models.CharField(max_length=12)
+    phone2           = models.CharField(max_length=12)
+
+class Record(models.Model):
+     phone           = models.CharField(max_length=12)
+     date            = models.PositiveIntegerField(max_length=8)
+     time            = models.PositiveIntegerField(max_length=2)
+     location        = models.CharField(max_length=8)
+     address         = models.CharField(max_length=16)
