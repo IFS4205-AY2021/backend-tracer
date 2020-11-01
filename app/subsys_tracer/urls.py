@@ -8,5 +8,7 @@ urlpatterns = [
     path('search-contact/', views.search_contact, name="search_contact"),
     path('add-contact/', views.add_contact, name="add_contact"),
     path('delete-contact/', views.delete_contact, name="delete_contact"),
-    path('search-records/', views.search_records, name="search_records")
+    path('search-records/', views.search_records, name="search_records"),
+    path('contact-graph/', views.generate_graph, name="generate_graph"),
+    path('initiate-cluster/', views.initiate_cluster, name="initiate_cluster")
 ]

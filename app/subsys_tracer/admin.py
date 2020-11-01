@@ -3,7 +3,7 @@ from . import models
 
 # Register your models here.
 
-admin.site.register(models.User)
+admin.site.register(models.UserInfo)
 admin.site.register(models.StayHomeRecord)
 admin.site.register(models.Location)
 admin.site.register(models.Admin)
